@@ -119,5 +119,21 @@ extension UIImageView {
         guard let data = try? Data(contentsOf: url) else { return }
         self.image = UIImage(data: data)
     }
+    public func downloadImageAsync(_ url: URL) {
+        URLSession.shared.dataTask(with: url, completionHandler: {
+            (data, response, error) -> Void in
+            if error != nil {
+                    print(error ?? "Error in imagemFromServeURL")
+            }
+            
+            DispatchQueue.main.async (execute: {[weak self] () -> Void in
+                    let image =     UIImage(data: data!)
+                    self?.image = image
+                })
+        }).resume()
+    }
+    
+    
+    
 }
 

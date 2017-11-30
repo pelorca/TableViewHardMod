@@ -10,8 +10,8 @@ import UIKit
 import DataKit
 class TableViewController: UITableViewController {
     
-    let maxSession = 2
-    let maxRow = 5
+    let maxSession = 5
+    let maxRow = 10
     lazy var dataIcon: [Int: [Icon]] = [:]
     lazy var images: [Int: [NetworkImage]] = [:]
     
@@ -63,7 +63,7 @@ class TableViewController: UITableViewController {
         
         if indexPath.row % 2 != 0 {
             cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath)
-            cell.imageView?.downloadImage(URL(string: contentImages.link)!)
+            cell.imageView?.downloadImageAsync(URL(string: contentImages.link)!)
             cell.textLabel?.text = contentImages.name
             cell.detailTextLabel?.text = contentImages.description
             
