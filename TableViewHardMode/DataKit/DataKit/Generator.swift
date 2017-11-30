@@ -8,10 +8,45 @@
 
 import Foundation
 
-public func helloFramework() {
-    print("Test")
+public func generateIcons(_ maxSection : Int, _ maxRow : Int) -> [Int : [Icon]] {
+    var dict = [Int : [Icon]]()
+    for i in 0 ..< maxSection {
+        var icons = [Icon]()
+        for _ in 0..<maxRow {
+            let iconName = randomIconName()
+            let icon = Icon(name: iconName, imageName: iconName, description: randomDilmaDescription())
+            icons.append(icon)
+        }
+        dict[i] = icons
+    }
+    return dict
 }
 
+public func getRandomColor() -> UIColor{
+    
+    let randomRed:CGFloat = CGFloat(drand48())
+    
+    let randomGreen:CGFloat = CGFloat(drand48())
+    
+    let randomBlue:CGFloat = CGFloat(drand48())
+    
+    return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+    
+}
+
+public func generateImage(_ maxSection : Int, _ maxRow : Int) -> [Int : [NetworkImage]] {
+    var dict = [Int : [NetworkImage]]()
+    for i in 0 ..< maxSection {
+        var images = [NetworkImage]()
+        for _ in 0..<maxRow {
+            let iconName = randomIconName()
+            let image = NetworkImage(name: iconName, link: randomImageUrl(), description: randomDilmaDescription())
+            images.append(image)
+        }
+      dict[i] = images
+    }
+    return dict
+}
 
 open class Icon {
     public let name: String
@@ -35,6 +70,9 @@ open class NetworkImage {
         self.link = link
         self.description = description
     }
+    
+   
+    
 }
 
 fileprivate func randomDilmaDescription() -> String {
@@ -75,3 +113,11 @@ fileprivate func randomIconName() -> String {
 fileprivate func randomImageUrl() -> String {
     return "https://picsum.photos/\(arc4random_uniform(900) + 100)/?random"
 }
+
+extension UIImageView {
+   public func downloadImage(_ url: URL) {
+        guard let data = try? Data(contentsOf: url) else { return }
+        self.image = UIImage(data: data)
+    }
+}
+
