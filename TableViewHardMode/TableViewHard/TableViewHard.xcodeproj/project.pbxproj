@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0CE57D1FD079B4002B072A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE57C1FD079B4002B072A /* TableViewCell.swift */; };
 		B1A505801FCF887900AE538A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A5057F1FCF887900AE538A /* AppDelegate.swift */; };
 		B1A505851FCF887900AE538A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1A505831FCF887900AE538A /* Main.storyboard */; };
 		B1A505871FCF887900AE538A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1A505861FCF887900AE538A /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D0CE57C1FD079B4002B072A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B1A5057C1FCF887900AE538A /* TableViewHard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewHard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A5057F1FCF887900AE538A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1A505841FCF887900AE538A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		B1A5057E1FCF887900AE538A /* TableViewHard */ = {
 			isa = PBXGroup;
 			children = (
+				1D0CE57C1FD079B4002B072A /* TableViewCell.swift */,
 				B1A505A01FCF88F000AE538A /* TableViewController.swift */,
 				B1A505831FCF887900AE538A /* Main.storyboard */,
 				B1A5059F1FCF88A000AE538A /* supportefiles */,
@@ -227,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D0CE57D1FD079B4002B072A /* TableViewCell.swift in Sources */,
 				B1A505801FCF887900AE538A /* AppDelegate.swift in Sources */,
 				B1A505A11FCF88F000AE538A /* TableViewController.swift in Sources */,
 			);
