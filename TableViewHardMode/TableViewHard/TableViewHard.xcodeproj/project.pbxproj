@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1D0CE57D1FD079B4002B072A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE57C1FD079B4002B072A /* TableViewCell.swift */; };
+		1D0CE57F1FD0A025002B072A /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE57E1FD0A025002B072A /* CollectionViewController.swift */; };
+		1D0CE5811FD0A330002B072A /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE5801FD0A330002B072A /* CollectionReusableView.swift */; };
+		1D0CE5831FD0A79A002B072A /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE5821FD0A79A002B072A /* CollectionViewCell.swift */; };
+		1D0CE5851FD0B114002B072A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CE5841FD0B114002B072A /* ViewController.swift */; };
 		B1A505801FCF887900AE538A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A5057F1FCF887900AE538A /* AppDelegate.swift */; };
 		B1A505851FCF887900AE538A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1A505831FCF887900AE538A /* Main.storyboard */; };
 		B1A505871FCF887900AE538A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1A505861FCF887900AE538A /* Assets.xcassets */; };
@@ -44,6 +48,10 @@
 
 /* Begin PBXFileReference section */
 		1D0CE57C1FD079B4002B072A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		1D0CE57E1FD0A025002B072A /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		1D0CE5801FD0A330002B072A /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
+		1D0CE5821FD0A79A002B072A /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		1D0CE5841FD0B114002B072A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B1A5057C1FCF887900AE538A /* TableViewHard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewHard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A5057F1FCF887900AE538A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1A505841FCF887900AE538A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,10 +106,14 @@
 		B1A5057E1FCF887900AE538A /* TableViewHard */ = {
 			isa = PBXGroup;
 			children = (
+				1D0CE5821FD0A79A002B072A /* CollectionViewCell.swift */,
+				1D0CE5801FD0A330002B072A /* CollectionReusableView.swift */,
+				1D0CE57E1FD0A025002B072A /* CollectionViewController.swift */,
 				1D0CE57C1FD079B4002B072A /* TableViewCell.swift */,
 				B1A505A01FCF88F000AE538A /* TableViewController.swift */,
 				B1A505831FCF887900AE538A /* Main.storyboard */,
 				B1A5059F1FCF88A000AE538A /* supportefiles */,
+				1D0CE5841FD0B114002B072A /* ViewController.swift */,
 			);
 			path = TableViewHard;
 			sourceTree = "<group>";
@@ -230,8 +242,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D0CE57F1FD0A025002B072A /* CollectionViewController.swift in Sources */,
 				1D0CE57D1FD079B4002B072A /* TableViewCell.swift in Sources */,
+				1D0CE5831FD0A79A002B072A /* CollectionViewCell.swift in Sources */,
 				B1A505801FCF887900AE538A /* AppDelegate.swift in Sources */,
+				1D0CE5851FD0B114002B072A /* ViewController.swift in Sources */,
+				1D0CE5811FD0A330002B072A /* CollectionReusableView.swift in Sources */,
 				B1A505A11FCF88F000AE538A /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6MK6PNT7QQ;
 				INFOPLIST_FILE = TableViewHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.scopus.curso.TableViewHard;
@@ -400,6 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6MK6PNT7QQ;
 				INFOPLIST_FILE = TableViewHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.scopus.curso.TableViewHard;

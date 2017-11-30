@@ -14,7 +14,7 @@ class TableViewController: UITableViewController {
     let maxRow = 10
     lazy var dataIcon: [Int: [Icon]] = [:]
     lazy var images: [Int: [NetworkImage]] = [:]
-    var delete: Bool =  false
+
     
     @IBOutlet var tableViewCustom: UITableView!
     
@@ -44,9 +44,9 @@ class TableViewController: UITableViewController {
     //}
     
    
-    //override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-     //   return .none
-    //  }
+    //override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> /UITableViewCellEditingStyle {
+      //  return .none
+    //}
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ""
