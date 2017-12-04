@@ -12,5 +12,7 @@ class CollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var namSection: UILabel!
     
     
-        
+    @IBOutlet weak var btnCamera: UIButton!
+    
+
 }

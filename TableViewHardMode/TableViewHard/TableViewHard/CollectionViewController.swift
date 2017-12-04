@@ -8,29 +8,32 @@
 
 import UIKit
 import DataKit
+import Photos
+
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController {
-
+class CollectionViewController: UICollectionViewController,  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var images = [UIImage]()
+    let imagePicker = UIImagePickerController()
     let maxSession = 2
     let maxRow = 5
-    lazy var images: [Int: [NetworkImage]] = [:]
+    //lazy var images: [Int: [NetworkImage]] = [:]
     var selectedIdexPath: IndexPath?? = nil
     
     
+    func getImages() {
+        self.images.reverse()
+        self.collectionView?.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.images = generateImage(maxSession,maxRow)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        getImages()
+        self.imagePicker.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,93 +44,127 @@ class CollectionViewController: UICollectionViewController {
         self.performSegue(withIdentifier: "showImage",  sender: self)
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation*/
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation*/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let page: ViewControllerImagem = segue.destination as! ViewControllerImagem
         if segue.identifier == "showImage" {
             page.imagem = (self.collectionView?.cellForItem(at: selectedIdexPath as! IndexPath) as! CollectionViewCell).imageCollection.image
         }
-       
-    }
- 
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return self.images.count
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return self.images[section]?.count ?? 0
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellImagem", for: indexPath) as! CollectionViewCell
         
-       
-        
-       let content = self.images[indexPath.section]?[indexPath.row]
-        cell.imageCollection?.downloadImageAsync(URL(string: (content?.link)!)!)
-        
-        return cell
     }
     
+    
+    // MARK: UICollectionViewDataSource
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of items
+        return self.images.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellImagem", for: indexPath) as! CollectionViewCell
+         cell.imageCollection?.image = images[indexPath.row]
+        return cell
+        
+        
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = self.view.frame.width * 0.32
+        let height = self.view.frame.height * 0.179910045
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 2.5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
         //1
         switch kind {
-        //2
         case UICollectionElementKindSectionHeader:
-            //3
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "collectionLabel",
                                                                              for: indexPath) as! CollectionReusableView
-            headerView.namSection.text = self.images[indexPath.section]?[indexPath.row].name
+            headerView.namSection.text = "FOTOS"
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.loadImageButtonTapped))
+            headerView.btnCamera.addGestureRecognizer(tapGesture)
             return headerView
         default:
-            //4
             assert(false, "Unexpected element kind")
         }
     }
-   
+    
+
+    @objc func loadImageButtonTapped() {
+        imagePicker.allowsEditing = false
+       
+        
+        let alertController = UIAlertController(title: "Escolhe uma Foto", message: "", preferredStyle: .actionSheet)
+        
+       
+        let Cancelar = UIAlertAction(title: "Cancelar", style: .cancel) { (action:UIAlertAction!) in
+            return
+        }
+        
+        alertController.addAction(Cancelar)
+        
+        let cancelAction = UIAlertAction(title: "Camera", style: .default) { (action:UIAlertAction!) in
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+            //Call another alert here
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "Galeria", style: .default) { (action:UIAlertAction!) in
+            self.imagePicker.sourceType = .photoLibrary;
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+    alertController.addAction(OKAction)
+        present(alertController, animated: true, completion: nil)
+        
+        
+    }
     
     
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+ 
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+            if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            images.append(pickedImage)
+            }
+            
+            dismiss(animated: true, completion: nil)
+           getImages()
     }
-    */
+ 
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+         dismiss(animated: true, completion: nil)
+    }
 
+
+
+    
 }

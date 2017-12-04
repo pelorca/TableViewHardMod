@@ -123,14 +123,23 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TX0-PT-daa">
-                                    <rect key="frame" x="101" y="0.0" width="181" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="181" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtA-Nk-OrW">
+                                    <rect key="frame" x="310" y="0.0" width="57" height="58"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" backgroundImage="camera"/>
+                                    <connections>
+                                        <action selector="btnCamera:" destination="gRj-UM-Pxc" eventType="touchUpInside" id="2C8-zr-Zzn"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <connections>
+                                <outlet property="btnCamera" destination="rtA-Nk-OrW" id="uI1-dg-tRg"/>
                                 <outlet property="namSection" destination="TX0-PT-daa" id="fiG-1E-yhr"/>
                             </connections>
                         </collectionReusableView>
@@ -156,21 +165,78 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1IV-zn-9dy">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="XcN-Ty-d4S">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0st-85-YvK">
+                                        <rect key="frame" x="0.0" y="120" width="375" height="393"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="393" id="HPE-NY-RnZ"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0st-85-YvK" firstAttribute="leading" secondItem="XcN-Ty-d4S" secondAttribute="leading" id="UzG-7A-Fbi"/>
+                                    <constraint firstAttribute="bottom" secondItem="0st-85-YvK" secondAttribute="bottom" constant="154" id="hMb-BE-PhC"/>
+                                    <constraint firstAttribute="trailing" secondItem="0st-85-YvK" secondAttribute="trailing" id="iXr-18-40e"/>
+                                    <constraint firstItem="0st-85-YvK" firstAttribute="top" secondItem="XcN-Ty-d4S" secondAttribute="top" constant="120" id="oiB-Bn-5ZS"/>
+                                    <constraint firstItem="0st-85-YvK" firstAttribute="centerX" secondItem="XcN-Ty-d4S" secondAttribute="centerX" id="zr3-si-QvJ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="gwS-lz-4EO" id="nBL-oB-Piz"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XcN-Ty-d4S" firstAttribute="top" secondItem="lFo-35-vpQ" secondAttribute="top" id="SIJ-qz-l5j"/>
+                            <constraint firstItem="XcN-Ty-d4S" firstAttribute="bottom" secondItem="8F8-Eo-tfy" secondAttribute="bottom" id="aJJ-T3-Naz"/>
+                            <constraint firstAttribute="trailing" secondItem="XcN-Ty-d4S" secondAttribute="trailing" id="fHb-Ql-nVy"/>
+                            <constraint firstItem="XcN-Ty-d4S" firstAttribute="leading" secondItem="lFo-35-vpQ" secondAttribute="leading" id="iaB-yb-H4d"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8F8-Eo-tfy"/>
                     </view>
                     <connections>
-                        <outlet property="imagemZoom" destination="1IV-zn-9dy" id="jq2-Sh-SBp"/>
+                        <outlet property="imagemZoom" destination="0st-85-YvK" id="cR3-cn-SDI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kYx-ey-bbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1784.8" y="0.44977511244377816"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="0rj-7q-jMO">
+            <objects>
+                <collectionViewController id="eHC-sT-riN" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Al6-Ee-BuH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3WY-y4-GCA">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xoJ-vx-XdH">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="eHC-sT-riN" id="Ccr-Wx-BjJ"/>
+                            <outlet property="delegate" destination="eHC-sT-riN" id="7En-T9-EkF"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mQp-3V-aaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2444" y="-64"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uuu-vq-h0n">
@@ -191,4 +257,7 @@
             <point key="canvasLocation" x="-738" y="11"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="94" height="94"/>
+    </resources>
 </document>

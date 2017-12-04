@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerImagem: UIViewController {
+class ViewControllerImagem: UIViewController, UIScrollViewDelegate {
 
     public var imagem: UIImage?
     @IBOutlet weak public var imagemZoom: UIImageView!
@@ -20,7 +20,9 @@ class ViewControllerImagem: UIViewController {
         // Do any additional setup after loading the view.
     }
 
- 
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imagemZoom
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
